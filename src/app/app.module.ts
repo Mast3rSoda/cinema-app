@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MovieEditComponent } from './components/movies/movie-edit/movie-edit.component';
 import { FormsModule } from '@angular/forms';
+import { RoomItemComponent } from './components/rooms/room-item/room-item.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { FormsModule } from '@angular/forms';
     MoviesItemComponent,
     MovieAddComponent,
     MovieEditComponent,
+    RoomItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -40,6 +40,14 @@ export class MoviesMainComponent implements OnInit {
     })
   }
 
+  updateMovie(movie: Movie): void {
+    const id: number = this.movies.indexOf(movie);
+    this.dataService.updateMovie(id, movie).subscribe((movie) => {
+      movie = this.movies[id];
+    });
+    
+  }
+
   deleteMovie(movie: Movie): void {
     const id: number = this.movies.indexOf(movie);
     this.dataService.deleteMovie(id).subscribe(() => {

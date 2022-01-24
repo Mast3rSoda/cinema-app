@@ -10,7 +10,7 @@
             <button mat-raised-button color="accent" (click)="editToggle()">Edytuj</button>
             <button mat-raised-button (click)="deleteMovie(movie)" color="accent">Usuń</button>
           </mat-card-actions>
-          <app-movie-edit *ngIf="showEdit" [movie]="movie">
+          <app-movie-edit *ngIf="showEdit" [movie]="movie" (onMovieSubmit)="updateMovie(movie)">
 
           </app-movie-edit>
     </mat-card>

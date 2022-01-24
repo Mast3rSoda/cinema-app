@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/models/movies-model';
 
 @Component({
@@ -12,21 +10,21 @@ export class MoviesItemComponent implements OnInit {
 
   @Input() movie!: Movie;
   @Output() ondDleteMovie: EventEmitter<Movie> = new EventEmitter();
+  @Output() onUpdateMovie: EventEmitter<Movie> = new EventEmitter();
 
   showEdit: boolean = false;
-  private routeSubscription!: Subscription;
-  private id!: number;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.routeSubscription = this.route.params.subscribe(params => {
-      this.id = params[`id`];
-    })
-  }
+  ngOnInit(): void {  }
 
   deleteMovie(movie: Movie): void {
     this.ondDleteMovie.emit(movie);
+  }
+
+  updateMovie(movie: Movie) {
+    this.onUpdateMovie.emit(movie);
+    this.editToggle();
   }
 
   editToggle() {

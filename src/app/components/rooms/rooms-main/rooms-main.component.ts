@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Room } from 'src/app/models/rooms-model';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -8,12 +9,15 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class RoomsMainComponent implements OnInit {
 
+  rooms: Room[] = [];
+
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.dataService.getRooms().subscribe(rooms => {
-      console.log(rooms);
-    })
+        this.rooms = rooms;
+        console.log(this.rooms)
+    });
   }
 
 }

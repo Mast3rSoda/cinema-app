@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { waitForAsync } from '@angular/core/testing';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Movie } from 'src/app/models/movies-model';
@@ -14,7 +15,7 @@ export class MovieAddComponent implements OnInit {
   pattern = new RegExp('https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)');
 
   checkName = new FormControl('', { validators: Validators.required });
-  checkDuration = new FormControl('', {validators: [Validators.required, Validators.min(31), Validators.max(299)]});
+  checkDuration = new FormControl('', [Validators.required, Validators.min(31), Validators.max(299)]);
   checkDescription = new FormControl('', { validators: Validators.required });
   checkUrl = new FormControl('', { validators: [Validators.required, Validators.pattern(this.pattern)] });
 
@@ -42,21 +43,33 @@ export class MovieAddComponent implements OnInit {
     var flag: boolean = false;
 
     if (!this.form.value.movieName) {
+      this.checkDuration.setErrors(Validators.required);
       this.checkName.updateValueAndValidity();
       flag = true;
     }
     if (this.form.value.movieDuration < 31 || this.form.value.movieDuration > 299) {
       if (this.form.value.movieDuration === null){
+        this.checkDuration.setErrors(Validators.required);
         this.form.value.movieDuration = '';
-      this.checkDuration.updateValueAndValidity();
     }
       flag = true;
+      if(this.form.value.movieDuration < 31)
+      this.checkDuration.setErrors(Validators.min);
+      else
+        this.checkDuration.setErrors(Validators.max);
+
+      this.checkDuration.updateValueAndValidity();
     }
     if (!this.form.value.movieDescription) {
+      this.checkDuration.setErrors(Validators.required);
       this.checkDescription.updateValueAndValidity();
       flag = true;
     }
     if (!this.form.value.moviePosterUrl || !this.pattern.test(this.form.value.moviePosterUrl)) {
+      if(!this.form.value.moviePosterUrl)
+        this.checkDuration.setErrors(Validators.required);
+      else
+        this.checkDuration.setErrors(Validators.pattern);
       this.checkUrl.updateValueAndValidity();
       flag = true;
     }
@@ -89,7 +102,7 @@ export class MovieAddComponent implements OnInit {
     }
     else
       setTimeout(() => {
-        this.checkDuration.setErrors(null);
+        this.checkDuration.setErrors(null)
       }, 0);
     return '';
   }
