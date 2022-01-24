@@ -1,0 +1,48 @@
+<mat-card class="card">
+    <form class="form" (ngSubmit)="onSubmit()">
+        <mat-card-title-group>
+            <mat-card-title>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nazwa</mat-label>
+                    <input matInput type="text" [(ngModel)]="movie.title" name="title" #title="ngModel" required/>
+                    <mat-error *ngIf="title.errors?.['required']">Pole nie może być puste!</mat-error>
+                </mat-form-field>
+            </mat-card-title>
+
+            <mat-card-subtitle>
+                <mat-form-field appearance="outline">
+                    <mat-label>Czas trwania</mat-label>
+                    <input matInput type="number" [(ngModel)]="movie.duration" #duration="ngModel" min="31" max="299" name="duration" required />
+                    <mat-error *ngIf="duration.errors?.['required']">Pole nie może być puste!</mat-error>
+                    <mat-error *ngIf="duration.errors?.['min']">Długość jest za krótka!</mat-error>
+                    <mat-error *ngIf="duration.errors?.['max']">Długość jest za długa!</mat-error>
+                    <!-- <mat-error *ngIf=""></mat-error> -->
+
+                </mat-form-field>
+            </mat-card-subtitle>
+            <mat-card-subtitle>
+                <mat-form-field appearance="outline">
+                    <mat-label>Opis</mat-label>
+                    <textarea matInput class="inputDescription" type="text" #description="ngModel" [(ngModel)]="movie.description"
+                        name="description" required>
+
+                    </textarea>
+                    <mat-error *ngIf="description.errors?.['required']">Pole nie może być puste!</mat-error>
+
+                </mat-form-field>
+            </mat-card-subtitle>
+            <mat-card-subtitle>
+                <mat-form-field appearance="outline">
+                    <mat-label>Plakat</mat-label>
+                    <input matInput type="text" [(ngModel)]="movie.image" name="image" #image="ngModel"
+                    pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}.*" required/>
+                    <mat-error *ngIf="image.errors?.['required']">Pole nie może być puste!</mat-error>
+                    <mat-error *ngIf="image.errors?.['pattern']">Podaj poprawne URL!</mat-error>
+                </mat-form-field>
+            </mat-card-subtitle>
+            <img mat-card-xl-image [src]=movie.image>
+        </mat-card-title-group>
+        <span></span>
+        <button mat-raised-button type="submit" color="primary"> Zapisz</button>
+    </form>
+</mat-card>

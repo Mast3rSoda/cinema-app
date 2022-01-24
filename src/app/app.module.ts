@@ -11,6 +11,17 @@ import { HomeComponent } from './components/home/home.component';
 import { MoviesMainComponent } from './components/movies/movies-main/movies-main.component';
 import { RoomsMainComponent } from './components/rooms/rooms-main/rooms-main.component';
 import { ScreeningsMainComponent } from './components/screenings/screenings-main/screenings-main.component';
+import { MoviesItemComponent } from './components/movies/movies-item/movies-item.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MovieAddComponent } from './components/movies/movie-add/movie-add.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MovieEditComponent } from './components/movies/movie-edit/movie-edit.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +30,10 @@ import { ScreeningsMainComponent } from './components/screenings/screenings-main
     HomeComponent,
     MoviesMainComponent,
     RoomsMainComponent,
-    ScreeningsMainComponent
+    ScreeningsMainComponent,
+    MoviesItemComponent,
+    MovieAddComponent,
+    MovieEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +41,14 @@ import { ScreeningsMainComponent } from './components/screenings/screenings-main
     BrowserAnimationsModule,
     HttpClientModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,24 @@
+.card {
+    max-width: 1000px;
+    margin: 30px auto;
+    overflow: auto;
+    padding: 30px;
+    border: 1px solid gray;
+  }
+
+mat-card-title {
+    margin-bottom: 25px;
+    justify-content: center;
+    display: flex;
+}
+
+  img {
+	height: 400px;
+    width: 300px;
+    padding-left: 15px;
+}
+
+.card-subtitle {
+    color: white;
+}
+

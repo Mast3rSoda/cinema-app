@@ -1,0 +1,17 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+  }
+mat-form-field {
+    font-size: 16px;
+}
+
+.inputDescription {
+    min-height: 150px;
+}
+
+.mat-dialog-actions {
+    display: flex;
+    justify-content: space-between;
+}

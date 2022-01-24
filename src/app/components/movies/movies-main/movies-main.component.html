@@ -1,1 +1,5 @@
-<p>movies-main works!</p>
+<div class="container">
+    <span class="spacer"></span>
+    <button mat-raised-button (click)="openAddMovie()" color="primary">Dodaj Film</button>
+    <app-movies-item *ngFor="let movie of movies" [movie]="movie" (ondDleteMovie)="deleteMovie(movie)"></app-movies-item>
+</div>

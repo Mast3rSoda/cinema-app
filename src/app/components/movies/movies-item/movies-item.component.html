@@ -1,0 +1,17 @@
+<div class="movieItem">
+    <mat-card class="card">
+        <mat-card-title-group>
+            <mat-card-title class="card-title">{{ movie.title | titlecase }}</mat-card-title>
+            <mat-card-subtitle>Czas trwania filmu: {{movie.duration }} min. </mat-card-subtitle>
+            <mat-card-subtitle class="card-subtitle">{{ movie.description }}</mat-card-subtitle>
+            <img mat-card-xl-image [src]=movie.image>
+        </mat-card-title-group>
+        <mat-card-actions>
+            <button mat-raised-button color="accent" (click)="editToggle()">Edytuj</button>
+            <button mat-raised-button (click)="deleteMovie(movie)" color="accent">Usuń</button>
+          </mat-card-actions>
+          <app-movie-edit *ngIf="showEdit" [movie]="movie">
+
+          </app-movie-edit>
+    </mat-card>
+</div>

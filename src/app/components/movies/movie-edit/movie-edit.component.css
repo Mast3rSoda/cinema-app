@@ -1,0 +1,26 @@
+.card {
+    max-width: 800px;
+    margin: 30px auto;
+    overflow: auto;
+    padding: 30px;
+    border: 1px solid gray;
+  }
+
+  .form {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+  }
+mat-form-field {
+    font-size: 16px;
+    min-width: 540px;
+    color: white;
+}
+
+.inputDescription {
+    min-height: 120px;
+}
+
+img {
+    min-height: 360px;
+}

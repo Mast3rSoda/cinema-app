@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Dodaj Film</h1>
+<form class="form" [formGroup]="form" (ngSubmit)="Submit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Nazwa</mat-label>
+    <input matInput type="text" formControlName="movieName" [formControl]="checkName" />
+    <mat-error *ngIf="checkName.invalid">{{ getNameError() }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Czas trwania</mat-label>
+    <input matInput type="number" formControlName="movieDuration" [formControl]="checkDuration" />
+    <mat-error *ngIf="checkDuration.invalid">{{ getDurationError() }}</mat-error>
+    <span matSuffix>min</span>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Opis</mat-label>
+    <textarea matInput class="inputDescription" formControlName="movieDescription" [formControl]="checkDescription">
+    </textarea>
+    <mat-error *ngIf="checkDescription.invalid">{{ getDescriptionError() }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Link do plakatu</mat-label>
+    <input matInput type="url" formControlName="moviePosterUrl" [formControl]="checkUrl" />
+    <mat-error *ngIf="checkUrl.invalid">{{ getErrorUrlMessage() }}</mat-error>
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <span></span>
+    <button mat-raised-button type="submit" color="primary"> Zapisz</button>
+  </div>
+</form>
