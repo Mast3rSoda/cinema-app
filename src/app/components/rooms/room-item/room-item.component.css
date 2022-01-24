@@ -1,0 +1,13 @@
+.card {
+    max-width: 1000px;
+    margin: 30px auto;
+    overflow: auto;
+    padding: 30px;
+    border: 1px solid gray;
+  }
+
+mat-card-title {
+    margin-bottom: 25px;
+    justify-content: center;
+    display: flex;
+}

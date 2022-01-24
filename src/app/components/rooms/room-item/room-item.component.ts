@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Room } from 'src/app/models/rooms-model';
 
 @Component({
   selector: 'app-room-item',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./room-item.component.css']
 })
 export class RoomItemComponent implements OnInit {
+
+  @Input() room!: Room;
 
   constructor() { }
 

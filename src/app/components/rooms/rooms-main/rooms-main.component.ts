@@ -15,8 +15,7 @@ export class RoomsMainComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getRooms().subscribe(rooms => {
-        this.rooms = rooms;
-        console.log(this.rooms)
+      this.rooms = rooms;
     });
   }
 
