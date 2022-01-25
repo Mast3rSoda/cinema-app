@@ -1,5 +1,9 @@
 <div class="container">
-    <span class="spacer"></span>
-    <button mat-raised-button (click)="openAddMovie()" color="primary">Dodaj Film</button>
-    <app-movies-item *ngFor="let movie of movies" [movie]="movie" (ondDleteMovie)="deleteMovie(movie)" (onUpdateMovie)="updateMovie(movie)"></app-movies-item>
+    <div class="row">
+        <button mat-raised-button (click)="openAddMovie()" color="primary">Dodaj Film</button>
+        <h1>Filmy</h1>
+        <span class="spacer"></span>
+    </div>
+    <app-movies-item *ngFor="let movie of movies" [movie]="movie" (ondDleteMovie)="deleteMovie(movie)"
+        (onUpdateMovie)="updateMovie(movie)"></app-movies-item>
 </div>

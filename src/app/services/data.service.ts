@@ -3,6 +3,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 import { Movie } from 'src/app/models/movies-model'
 import { Room } from '../models/rooms-model';
+import { Screening } from '../models/screenings-model';
 
 @Injectable({
   providedIn: 'root'
@@ -57,8 +58,8 @@ export class DataService {
     }))
   };
 
-  public getScreenings() {
-    return this.http.get(`${this.url}/screenings`)
+  public getScreenings(): Observable<Screening[]> {
+    return this.http.get<Screening[]>(`${this.url}/screenings`)
     .pipe(catchError((error: any) => { 
       return throwError(() => {
         console.error(error);

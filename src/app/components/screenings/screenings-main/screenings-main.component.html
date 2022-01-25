@@ -1,1 +1,15 @@
-<p>screenings-main works!</p>
+<div class="container">
+    <div class="row">
+        <button mat-raised-button color="primary">Dodaj Seans</button>
+        <h1>Seanse</h1>
+        <mat-form-field appearance="fill">
+            <mat-label>Podaj Datę</mat-label>
+            <input matInput [matDatepicker]="picker" [matDatepickerFilter]="myDateFilter">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+    </div>
+    <app-screenings-item *ngFor="let screening of screenings" [screening]="screening"
+        [movie]="movies[screening.movieId]" [room]="rooms[screening.roomId]">
+    </app-screenings-item>
+</div>

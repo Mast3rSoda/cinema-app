@@ -3,6 +3,7 @@ import { Movie } from 'src/app/models/movies-model';
 import { DataService } from 'src/app/services/data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MovieAddComponent } from '../movie-add/movie-add.component';
+import { Screening } from 'src/app/models/screenings-model';
 
 @Component({
   selector: 'app-movies-main',
@@ -12,6 +13,7 @@ import { MovieAddComponent } from '../movie-add/movie-add.component';
 export class MoviesMainComponent implements OnInit {
 
   movies: Movie[] = [];
+  screenings: Screening[] = [];
 
   constructor(private dataService: DataService, public dialog: MatDialog) {
   }
@@ -19,9 +21,14 @@ export class MoviesMainComponent implements OnInit {
   ngOnInit(): void {
       this.dataService.getMovies().subscribe(movies => {
       this.movies = movies;
-
     });
+      this.dataService.getScreenings().subscribe(screenings => {
+        this.screenings = screenings;
+        console.log(screenings);
+      })
   }
+
+  //TODO make a func that passes the value of seatsTaken/roomCapacity based on movie
 
   openAddMovie(): void {
     const dialogRef = this.dialog.open(MovieAddComponent, {

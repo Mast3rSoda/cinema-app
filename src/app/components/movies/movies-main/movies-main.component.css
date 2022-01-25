@@ -6,4 +6,14 @@
     border: 1px solid gray;
     border-radius: 5px;
   }
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+h1 {
+  font-size: 64px;
+}
 
+.spacer {
+  width: 99px;
+}

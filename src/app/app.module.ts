@@ -22,7 +22,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MovieEditComponent } from './components/movies/movie-edit/movie-edit.component';
 import { FormsModule } from '@angular/forms';
 import { RoomItemComponent } from './components/rooms/room-item/room-item.component';
-
+import { MatSliderModule } from '@angular/material/slider';
+import { ScreeningsItemComponent } from './components/screenings/screenings-item/screenings-item.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import { RoomItemComponent } from './components/rooms/room-item/room-item.compon
     MovieAddComponent,
     MovieEditComponent,
     RoomItemComponent,
+    ScreeningsItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,9 @@ import { RoomItemComponent } from './components/rooms/room-item/room-item.compon
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSliderModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

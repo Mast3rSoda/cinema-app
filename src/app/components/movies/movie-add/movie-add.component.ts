@@ -15,7 +15,7 @@ export class MovieAddComponent implements OnInit {
   pattern = new RegExp('https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)');
 
   checkName = new FormControl('', { validators: Validators.required });
-  checkDuration = new FormControl('', [Validators.required, Validators.min(31), Validators.max(299)]);
+  checkDuration = new FormControl('', { validators: [Validators.required, Validators.min(31), Validators.max(299)] });
   checkDescription = new FormControl('', { validators: Validators.required });
   checkUrl = new FormControl('', { validators: [Validators.required, Validators.pattern(this.pattern)] });
 
@@ -43,33 +43,32 @@ export class MovieAddComponent implements OnInit {
     var flag: boolean = false;
 
     if (!this.form.value.movieName) {
-      this.checkDuration.setErrors(Validators.required);
+      this.checkName.setErrors(Validators.required);
       this.checkName.updateValueAndValidity();
       flag = true;
     }
     if (this.form.value.movieDuration < 31 || this.form.value.movieDuration > 299) {
-      if (this.form.value.movieDuration === null){
+      if (this.form.value.movieDuration == null || this.form.value.movieDuration == '') {
         this.checkDuration.setErrors(Validators.required);
         this.form.value.movieDuration = '';
-    }
-      flag = true;
-      if(this.form.value.movieDuration < 31)
-      this.checkDuration.setErrors(Validators.min);
+      }
+      if (this.form.value.movieDuration < 31)
+        this.checkDuration.setErrors(Validators.min);
       else
         this.checkDuration.setErrors(Validators.max);
-
+      flag = true;
       this.checkDuration.updateValueAndValidity();
     }
     if (!this.form.value.movieDescription) {
-      this.checkDuration.setErrors(Validators.required);
+      this.checkDescription.setErrors(Validators.required);
       this.checkDescription.updateValueAndValidity();
       flag = true;
     }
     if (!this.form.value.moviePosterUrl || !this.pattern.test(this.form.value.moviePosterUrl)) {
-      if(!this.form.value.moviePosterUrl)
-        this.checkDuration.setErrors(Validators.required);
+      if (!this.form.value.moviePosterUrl)
+        this.checkUrl.setErrors(Validators.required);
       else
-        this.checkDuration.setErrors(Validators.pattern);
+        this.checkUrl.setErrors(Validators.pattern);
       this.checkUrl.updateValueAndValidity();
       flag = true;
     }
@@ -91,7 +90,9 @@ export class MovieAddComponent implements OnInit {
   }
 
   getDurationError() {
-    if (this.checkDuration.hasError('required') && this.form.value.movieDuration == '') {
+    if (this.form.value.movieDuration == null)
+      this.form.value.movieDuration = '';
+    if (this.checkDuration.hasError('required') && this.form.value.movieDuration.length == 0) {
       return 'Pole nie może być puste!';
     }
     else if (this.form.value.movieDuration < 31 || this.checkDuration.hasError('min')) {

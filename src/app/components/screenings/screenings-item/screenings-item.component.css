@@ -1,0 +1,38 @@
+.card {
+    max-width: 800px;
+    margin: 30px auto;
+    overflow: auto;
+    padding: 30px;
+    border: 1px solid gray;
+  }
+
+mat-card-title {
+    margin-bottom: 25px;
+    justify-content: center;
+    display: flex;
+}
+
+  img {
+	height: 400px;
+    width: 300px;
+    padding-left: 15px;
+}
+
+
+mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+mat-card-subtitle {
+    color: white;
+}
+
+mat-card-title, mat-card-subtitle {
+    margin-left: 50px;
+}
+
+.buyButton {
+    font-size: 24px;
+    height: 48px;
+}
