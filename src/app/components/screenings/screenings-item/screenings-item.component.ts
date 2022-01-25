@@ -17,7 +17,14 @@ export class ScreeningsItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
   }
+
+  checkIfRunning(): boolean {
+    //godzina rozpoczecia < teraz
+    if(new Date(this.screening.date+"T"+this.screening.hour) < new Date())
+      return true;
+    return false;
+  }
+
 
 }

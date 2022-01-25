@@ -26,6 +26,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { ScreeningsItemComponent } from './components/screenings/screenings-item/screenings-item.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ScreeningAddComponent } from './components/screenings/screening-add/screening-add.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MovieEditComponent,
     RoomItemComponent,
     ScreeningsItemComponent,
+    ScreeningAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSliderModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

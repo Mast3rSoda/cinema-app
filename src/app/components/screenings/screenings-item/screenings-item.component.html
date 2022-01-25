@@ -1,11 +1,12 @@
 <div class="movieItem">
     <mat-card class="card">
         <mat-card-title-group>
-            <mat-card-title class="card-title">{{ movie.title | titlecase }}</mat-card-title>
+            <mat-card-title id="title" class="card-title">{{ movie.title | titlecase }}</mat-card-title>
             <mat-card-subtitle>Czas trwania filmu: {{movie.duration }} min. </mat-card-subtitle>
             <mat-card-subtitle>Godzina rozpoczęcia seansu: {{ screening.hour }}</mat-card-subtitle>
             <mat-card-subtitle>Pokój: {{ screening.roomId }}</mat-card-subtitle>
             <mat-card-subtitle>Ilość wolnych miejsc: {{ room.capacity - screening.taken.length }}/{{ room.capacity }}</mat-card-subtitle>
+            <mat-card-subtitle class="ifRunning" *ngIf="checkIfRunning()">AKTUALNIE TRWA!</mat-card-subtitle>
             <img mat-card-xl-image [src]=movie.image>
         </mat-card-title-group>
         <mat-card-actions>
