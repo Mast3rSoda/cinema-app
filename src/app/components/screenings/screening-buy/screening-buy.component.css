@@ -1,0 +1,23 @@
+.card {
+    max-width: 800px;
+    margin: 30px auto;
+    overflow: auto;
+    padding: 30px;
+    border: 1px solid gray;
+  }
+
+h1 {
+    font-size: 48px;
+}
+
+.margin {
+    margin-top: 200px;
+}
+
+.seats {
+    width: 700px;
+}
+
+.btn {
+    margin: 3px;
+}

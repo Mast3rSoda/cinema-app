@@ -1,0 +1,18 @@
+<mat-card class="card">
+    <h1 mat-dialog-title>Kup bilet</h1>
+    <div class="margin"></div>
+    <div class="seats">
+        <ng-container *ngFor="let s of seats">
+            <button class="btn" style="background-color: rgb(168, 0, 70); color: white" mat-flat-button color="primary"
+                *ngIf="screening.taken.includes(s+1); else ee" disabled>{{s+1}}</button>
+            <ng-template #ee>
+                <button class="btn" mat-stroked-button (click)="toggleSeat(s)">{{s+1}}</button>
+            </ng-template>
+        </ng-container>
+    </div>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Wybrane miejsca</mat-label>
+        <input matInput type="text" disabled [value]="getValues()" style="color: white" />
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary" (click)="saveValues()">Zapisz</button>
+</mat-card>

@@ -56,6 +56,12 @@ export class ScreeningsMainComponent implements OnInit {
     })
   }
 
+  updateScreening(screening: Screening) {
+    this.dataService.updateScreening(this.screenings.indexOf(screening), screening).subscribe((screening) => {
+      this.screenings[this.screenings.indexOf(screening)] = screening;
+    })
+  }
+
   filterScreenings(): Screening[] {
     let screeningsF: Screening[] = [];
     this.screenings.forEach(screening => {

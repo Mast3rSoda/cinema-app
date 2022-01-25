@@ -58,6 +58,24 @@ export class DataService {
     }))
   };
 
+  public getRoom(id: number): Observable<Room> {
+    return this.http.get<Room>(`${this.url}/rooms/${id}`)
+    .pipe(catchError((error: any) => { 
+      return throwError(() => {
+        console.error(error);
+      }); 
+    }))
+  };
+
+  public getScreening(id: number): Observable<Screening> {
+    return this.http.get<Screening>(`${this.url}/screenings/${id}`)
+    .pipe(catchError((error: any) => { 
+      return throwError(() => {
+        console.error(error);
+      }); 
+    }))
+  };
+
   public getScreenings(): Observable<Screening[]> {
     return this.http.get<Screening[]>(`${this.url}/screenings`)
     .pipe(catchError((error: any) => { 
@@ -71,6 +89,17 @@ export class DataService {
     console.log(screening);
     const url = `${this.url}/add/screening`;
     return this.http.post<Screening>(url, {
+      "movieId": screening.movieId,
+      "roomId": screening.roomId,
+      "date": screening.date,
+      "hour": screening.hour,
+      "taken": screening.taken,
+    }, {headers: { 'Content-type': 'application/json'}});
+  }
+
+  public updateScreening(id: number, screening: Screening): Observable<Screening> {
+    const url = `${this.url}/update/screening/${id}`;
+    return this.http.put<Screening>(url, {
       "movieId": screening.movieId,
       "roomId": screening.roomId,
       "date": screening.date,

@@ -29,6 +29,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ScreeningAddComponent } from './components/screenings/screening-add/screening-add.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ScreeningBuyComponent } from './components/screenings/screening-buy/screening-buy.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     RoomItemComponent,
     ScreeningsItemComponent,
     ScreeningAddComponent,
+    ScreeningBuyComponent,
   ],
   imports: [
     BrowserModule,

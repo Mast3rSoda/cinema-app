@@ -10,6 +10,6 @@
           </mat-form-field>
     </div>
     <app-screenings-item *ngFor="let screening of filterScreenings()" [screening]="screening"
-        [movie]="movies[screening.movieId]" [room]="rooms[screening.roomId]">
+        [movie]="movies[screening.movieId]" [room]="rooms[screening.roomId]" [screenings]="screenings" (onBuyTickets)="updateScreening(screening)">
     </app-screenings-item>
 </div>

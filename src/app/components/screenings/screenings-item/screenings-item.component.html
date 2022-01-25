@@ -11,11 +11,10 @@
         </mat-card-title-group>
         <mat-card-actions>
             <button mat-raised-button class="editButton" color="accent">Edytuj</button>
-            <button mat-raised-button class="buyButton" color="primary">Kup Bilet</button>
+            <button mat-raised-button class="buyButton" color="primary" (click)="buyToggle()">Kup Bilet</button>
             <span style="width:71px"></span>
         </mat-card-actions>
-        <!-- <app-movie-edit *ngIf="showEdit" [movie]="movie" (onMovieSubmit)="updateMovie(movie)"> -->
-
-        <!-- </app-movie-edit> -->
+        <app-screening-buy *ngIf="showBuy" [screening]="screening" [room]="room" (onSave)="buyTicket(screening)">
+        </app-screening-buy>
     </mat-card>
 </div>

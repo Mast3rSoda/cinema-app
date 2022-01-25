@@ -1,5 +1,5 @@
 import { Screening } from './../../../models/screenings-model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Movie } from 'src/app/models/movies-model';
 import { Room } from 'src/app/models/rooms-model';
 
@@ -14,17 +14,30 @@ export class ScreeningsItemComponent implements OnInit {
   @Input() movie!: Movie;
   @Input() room!: Room;
 
+  @Output() onBuyTickets: EventEmitter<Screening> = new EventEmitter();
+
+  @Input() screenings!: Screening[];
+
+  showBuy: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   checkIfRunning(): boolean {
-    //godzina rozpoczecia < teraz
     if(new Date(this.screening.date+"T"+this.screening.hour) < new Date())
       return true;
     return false;
   }
 
 
+  buyTicket(screening: Screening) {
+    this.buyToggle();
+    this.onBuyTickets.emit(screening);
+  }
+
+  buyToggle() {
+    this.showBuy = !this.showBuy;
+  }
 }
