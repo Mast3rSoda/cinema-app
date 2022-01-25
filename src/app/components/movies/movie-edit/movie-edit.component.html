@@ -16,7 +16,6 @@
                     <mat-error *ngIf="duration.errors?.['required']">Pole nie może być puste!</mat-error>
                     <mat-error *ngIf="duration.errors?.['min']">Długość jest za krótka!</mat-error>
                     <mat-error *ngIf="duration.errors?.['max']">Długość jest za długa!</mat-error>
-                    <!-- <mat-error *ngIf=""></mat-error> -->
 
                 </mat-form-field>
             </mat-card-subtitle>
@@ -35,7 +34,7 @@
                 <mat-form-field appearance="outline">
                     <mat-label>Plakat</mat-label>
                     <input matInput type="text" [(ngModel)]="movie.image" name="image" #image="ngModel"
-                    pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}.*" required/>
+                    [pattern]="pattern" required/>
                     <mat-error *ngIf="image.errors?.['required']">Pole nie może być puste!</mat-error>
                     <mat-error *ngIf="image.errors?.['pattern']">Podaj poprawne URL!</mat-error>
                 </mat-form-field>

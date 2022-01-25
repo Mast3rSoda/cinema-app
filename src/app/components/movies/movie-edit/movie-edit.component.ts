@@ -11,7 +11,7 @@ export class MovieEditComponent implements OnInit {
   @Input() movie!: Movie;
   @Output() onMovieSubmit: EventEmitter<Movie> = new EventEmitter();
 
-  pattern = new RegExp('https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)');
+  pattern: RegExp = new RegExp('https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)');
 
   constructor() { }
 

@@ -11,127 +11,75 @@ import { Movie } from 'src/app/models/movies-model';
 })
 export class MovieAddComponent implements OnInit {
 
-  form!: FormGroup;
-  pattern = new RegExp('https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)');
+  pattern: RegExp = new RegExp('https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)');
 
-  checkName = new FormControl('', { validators: Validators.required });
-  checkDuration = new FormControl('', { validators: [Validators.required, Validators.min(31), Validators.max(299)] });
-  checkDescription = new FormControl('', { validators: Validators.required });
-  checkUrl = new FormControl('', { validators: [Validators.required, Validators.pattern(this.pattern)] });
+  name = new FormControl('', { validators: Validators.required });
+  duration = new FormControl('', { validators: [Validators.required, Validators.min(31), Validators.max(299)] });
+  description = new FormControl('', { validators: Validators.required });
+  url = new FormControl('', { validators: [Validators.required, Validators.pattern(this.pattern)] });
 
 
   constructor(
-    private dialogRef: MatDialogRef<MovieAddComponent>,
-    private formbuilder: FormBuilder) {
-    this.form = this.formbuilder.group({
-      movieName: [''],
-      movieDuration: [''],
-      moviePosterUrl: [''],
-      movieDescription: ['']
-    })
-  }
+    private dialogRef: MatDialogRef<MovieAddComponent>) {}
 
   ngOnInit(): void {
   }
 
   Submit() {
-    var movie: Movie = new Movie(
-      this.form.value.movieName,
-      this.form.value.movieDuration,
-      this.form.value.movieDescription,
-      this.form.value.moviePosterUrl)
     var flag: boolean = false;
 
-    if (!this.form.value.movieName) {
-      this.checkName.setErrors(Validators.required);
-      this.checkName.updateValueAndValidity();
+    if (!this.name.value) 
       flag = true;
-    }
-    if (this.form.value.movieDuration < 31 || this.form.value.movieDuration > 299) {
-      if (this.form.value.movieDuration == null || this.form.value.movieDuration == '') {
-        this.checkDuration.setErrors(Validators.required);
-        this.form.value.movieDuration = '';
-      }
-      if (this.form.value.movieDuration < 31)
-        this.checkDuration.setErrors(Validators.min);
-      else
-        this.checkDuration.setErrors(Validators.max);
+    if (this.duration.value < 31 || this.duration.value > 299) 
       flag = true;
-      this.checkDuration.updateValueAndValidity();
-    }
-    if (!this.form.value.movieDescription) {
-      this.checkDescription.setErrors(Validators.required);
-      this.checkDescription.updateValueAndValidity();
+    if (!this.description.value) 
       flag = true;
-    }
-    if (!this.form.value.moviePosterUrl || !this.pattern.test(this.form.value.moviePosterUrl)) {
-      if (!this.form.value.moviePosterUrl)
-        this.checkUrl.setErrors(Validators.required);
-      else
-        this.checkUrl.setErrors(Validators.pattern);
-      this.checkUrl.updateValueAndValidity();
+    if (!this.url.value || !this.pattern.test(this.url.value)) 
       flag = true;
-    }
     if (!flag) {
+      var movie: Movie = new Movie(
+        this.name.value,
+        this.duration.value,
+        this.description.value,
+        this.url.value)
       this.dialogRef.close(movie);
     }
   }
 
   getNameError() {
-    if (this.checkName.hasError('required') && this.form.value.movieName.length == 0) {
+    if (this.name.hasError('required')) {
       return 'Pole nie może być puste!';
     }
-    else
-      setTimeout(() => {
-        this.checkName.updateValueAndValidity();
-        this.checkName.setErrors(null);
-      }, 0);
     return '';
   }
 
   getDurationError() {
-    if (this.form.value.movieDuration == null)
-      this.form.value.movieDuration = '';
-    if (this.checkDuration.hasError('required') && this.form.value.movieDuration.length == 0) {
+    if (this.duration.hasError('required')) {
       return 'Pole nie może być puste!';
     }
-    else if (this.form.value.movieDuration < 31 || this.checkDuration.hasError('min')) {
+    else if (this.duration.hasError('min')) {
       return 'Długość jest za krótka!'
     }
-    else if (this.form.value.movieDuration > 299 || this.checkDuration.hasError('max')) {
+    else if (this.duration.hasError('max')) {
       return 'Długość jest za długa!'
     }
-    else
-      setTimeout(() => {
-        this.checkDuration.setErrors(null)
-      }, 0);
     return '';
   }
 
   getDescriptionError() {
-    if (this.checkDescription.hasError('required') && this.form.value.movieDescription.length == 0) {
+    if (this.description.hasError('required')) {
       return 'Pole nie może być puste!';
     }
-    else
-      setTimeout(() => {
-        this.checkDescription.updateValueAndValidity();
-        this.checkDescription.setErrors(null);
-      }, 0);
     return '';
   }
 
   getErrorUrlMessage() {
-    if (this.checkUrl.hasError('required') && this.form.value.moviePosterUrl.length == 0) {
+    if (this.url.hasError('required')) {
       return 'Pole nie może być poste!';
     }
-    else if (!this.pattern.test(this.form.value.moviePosterUrl)) {
+    else if (!this.pattern.test(this.url.value)) {
       return 'URL nie jest poprawne!'
     }
-    else
-      setTimeout(() => {
-        this.checkUrl.updateValueAndValidity();
-        this.checkUrl.setErrors(null);
-      }, 0);
     return '';
   }
 
