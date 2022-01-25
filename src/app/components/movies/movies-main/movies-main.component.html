@@ -2,8 +2,13 @@
     <div class="row">
         <button mat-raised-button (click)="openAddMovie()" color="primary">Dodaj Film</button>
         <h1>Filmy</h1>
-        <span class="spacer"></span>
+        <mat-form-field appearance="fill">
+            <mat-label>Podaj Datę</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
     </div>
-    <app-movies-item *ngFor="let movie of movies" [movie]="movie" (ondDleteMovie)="deleteMovie(movie)"
+    <app-movies-item *ngFor="let movie of movies" [movie]="movie" [pop]="getPop(movie)" (ondDleteMovie)="deleteMovie(movie)"
         (onUpdateMovie)="updateMovie(movie)"></app-movies-item>
 </div>

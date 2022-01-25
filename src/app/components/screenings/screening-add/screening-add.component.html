@@ -1,1 +1,53 @@
-<p>screening-add works!</p>
+<h1 mat-dialog-title>Dodaj Seans</h1>
+<form class="form" (ngSubmit)="Submit()">
+  <!-- <mat-form-field appearance="outline">
+    <mat-label>Nazwa</mat-label>
+    <input matInput type="text" [formControl]="name" />
+    <mat-error *ngIf="name.invalid">{{ getNameError() }}</mat-error>
+  </mat-form-field> -->
+  <mat-form-field appearance="fill">
+    <mat-label>Film</mat-label>
+    <mat-select [formControl]="film" required>
+      <mat-option *ngFor="let movie of movies" [value]="movie">
+        {{movie.title}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="film.errors?.['required']">Pole nie może być puste!</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Sala</mat-label>
+    <mat-select [formControl]="sala" required>
+      <mat-option *ngFor="let room of rooms" [value]="room">
+        {{room.roomNumber}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="sala.errors?.['required']">Pole nie może być puste!</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Podaj Datę</mat-label>
+    <input matInput [matDatepicker]="picker" [formControl]="date" [matDatepickerFilter]="myDateFilter">
+    <mat-error *ngIf="date.errors?.['required']">Pole nie może być puste!</mat-error>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <div class="timePicks">
+  <mat-form-field appearance="outline" class="time">
+    <mat-label>Godzina</mat-label>
+    <input matInput type="number" [formControl]="hour" />
+    <mat-error *ngIf="hour.invalid">{{ getHourError() }}</mat-error>
+    <span matSuffix>h</span>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="time minute">
+    <mat-label>Minuta</mat-label>
+    <input matInput type="number" [formControl]="minute" />
+    <mat-error *ngIf="minute.invalid">{{ getMinuteError() }}</mat-error>
+    <span matSuffix>min</span>
+  </mat-form-field>
+
+</div>
+  
+  <div mat-dialog-actions>
+    <span></span>
+    <button mat-raised-button type="submit" color="primary"> Zapisz</button>
+  </div>
+</form>

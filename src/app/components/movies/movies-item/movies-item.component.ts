@@ -9,6 +9,7 @@ import { Movie } from 'src/app/models/movies-model';
 export class MoviesItemComponent implements OnInit {
 
   @Input() movie!: Movie;
+  @Input() pop!: number;
   @Output() ondDleteMovie: EventEmitter<Movie> = new EventEmitter();
   @Output() onUpdateMovie: EventEmitter<Movie> = new EventEmitter();
 

@@ -17,17 +17,14 @@ export class ScreeningsMainComponent implements OnInit {
   movies: Movie[] = [];
   rooms: Room[] = [];
 
-
   date: Date = new Date();
-
-
 
   constructor(private dataService: DataService, public dialog: MatDialog) { }
 
 
   ngOnInit(): void {
-    this.dataService.getMovies().subscribe(moviees => {
-      this.movies = moviees;
+    this.dataService.getMovies().subscribe(movies => {
+      this.movies = movies;
     })
     this.dataService.getRooms().subscribe(rooms => {
       this.rooms = rooms;
@@ -39,12 +36,23 @@ export class ScreeningsMainComponent implements OnInit {
 
   openAddScreening(): void {
     const dialogRef = this.dialog.open(ScreeningAddComponent, {
-      width: '600px'
+      width: '600px',
+      data: {
+        movies: this.movies,
+        rooms: this.rooms
+      }
     });
 
     dialogRef.afterClosed().subscribe(screening => {
-      // if(screening !== undefined)
-      //   this.addScreening(screening);
+      if(screening !== undefined)
+        console.log(screening);
+        this.addScreening(screening);
+    })
+  }
+
+  addScreening(screening: Screening): void {
+    this.dataService.addScreening(screening).subscribe((screening) => {
+      this.screenings.push(screening);
     })
   }
 
@@ -56,7 +64,7 @@ export class ScreeningsMainComponent implements OnInit {
     });
     screeningsF.forEach(screening => {
       let date: Date = new Date(screening.date+"T"+screening.hour)
-      date.setMinutes(date.getMinutes()+this.movies[screening.movieId].duration)
+      date.setTime(date.getTime()+(this.movies[screening.movieId].duration*60*1000))
       if(new Date(date) <= new Date())
         screeningsF.splice(screeningsF.indexOf(screening), 1)
     })

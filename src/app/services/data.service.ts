@@ -67,5 +67,16 @@ export class DataService {
     }))
   };
 
+  public addScreening(screening: Screening): Observable<Screening> {
+    console.log(screening);
+    const url = `${this.url}/add/screening`;
+    return this.http.post<Screening>(url, {
+      "movieId": screening.movieId,
+      "roomId": screening.roomId,
+      "date": screening.date,
+      "hour": screening.hour,
+      "taken": screening.taken,
+    }, {headers: { 'Content-type': 'application/json'}});
+  }
   
 }
